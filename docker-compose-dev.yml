@@ -1,0 +1,4 @@
+test-system:
+    build: Dockerfile.dev .
+    stdin_open: true
+    tty: true

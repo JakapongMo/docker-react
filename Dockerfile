@@ -1,7 +1,7 @@
 # multi-step build
-FROM node:alpine as builder 
+FROM node:alpine
 WORKDIR '/app'
-COPY package.json .
+COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
@@ -11,6 +11,6 @@ FROM nginx
 # This container need port map 80
 EXPOSE 80
 # From destination path from nginx doc
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
 
